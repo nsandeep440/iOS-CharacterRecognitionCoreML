@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,95 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CharacterRecognitionDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pwh-MN-K0R">
+                                <rect key="frame" x="67.5" y="60" width="240" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="cCF-Am-T9E"/>
+                                    <constraint firstAttribute="height" constant="200" id="iQf-Eg-r7l"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Predicted Character:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q14-GA-m0h">
+                                <rect key="frame" x="113.5" y="528" width="148.5" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Image Character: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJg-u1-mts">
+                                <rect key="frame" x="93.5" y="469" width="188" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVu-EC-bz9">
+                                <rect key="frame" x="127.5" y="587" width="120" height="40"/>
+                                <color key="backgroundColor" red="0.6588235294" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UIH-oZ-Ugd"/>
+                                    <constraint firstAttribute="width" constant="120" id="jGT-X4-BgU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Predict Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GV-X2-vUk">
+                                <rect key="frame" x="12" y="120" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GZW-Sd-gAv"/>
+                                    <constraint firstAttribute="width" constant="44" id="kHk-ck-vRm"/>
+                                </constraints>
+                                <state key="normal" image="leftArrow"/>
+                                <connections>
+                                    <action selector="buttonPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ATf-N3-erD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2T-mL-1mv">
+                                <rect key="frame" x="319" y="120" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="DTm-RI-OFg"/>
+                                    <constraint firstAttribute="height" constant="44" id="uSw-Xd-ex8"/>
+                                </constraints>
+                                <state key="normal" image="rightArrow"/>
+                                <connections>
+                                    <action selector="buttonNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Y2-0N-yTJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N2T-mL-1mv" secondAttribute="trailing" constant="12" id="8na-eJ-hrg"/>
+                            <constraint firstItem="Pwh-MN-K0R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ACA-tw-x0X"/>
+                            <constraint firstItem="q14-GA-m0h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CDo-YM-DjU"/>
+                            <constraint firstItem="jVu-EC-bz9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Di5-ae-uij"/>
+                            <constraint firstItem="0GV-X2-vUk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="DoN-iP-DSp"/>
+                            <constraint firstItem="Pwh-MN-K0R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="Gzv-hv-y1K"/>
+                            <constraint firstItem="0GV-X2-vUk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="HqA-Kj-FmH"/>
+                            <constraint firstItem="q14-GA-m0h" firstAttribute="top" secondItem="dJg-u1-mts" secondAttribute="bottom" constant="40" id="QAD-NL-MGP"/>
+                            <constraint firstItem="jVu-EC-bz9" firstAttribute="top" secondItem="q14-GA-m0h" secondAttribute="bottom" constant="40" id="hPn-oK-wDG"/>
+                            <constraint firstItem="N2T-mL-1mv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="ib2-sq-eu0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jVu-EC-bz9" secondAttribute="bottom" constant="40" id="jhv-M4-v1t"/>
+                            <constraint firstItem="dJg-u1-mts" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sos-2c-dJg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Pwh-MN-K0R" id="Vtc-wN-REN"/>
+                        <outlet property="labelOriginal" destination="dJg-u1-mts" id="PP7-M4-k71"/>
+                        <outlet property="labelPrediction" destination="q14-GA-m0h" id="W9Y-QP-Opu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="leftArrow" width="37.5" height="37.5"/>
+        <image name="rightArrow" width="37.5" height="37.5"/>
+    </resources>
 </document>
