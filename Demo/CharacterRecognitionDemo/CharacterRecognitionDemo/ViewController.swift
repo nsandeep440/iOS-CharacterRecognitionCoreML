@@ -52,17 +52,27 @@ class ViewController: UIViewController {
     }
     
     func makePrediction() {
+        /*  //  1
+         -> create cvpixelBuffer object with image
+         -> create CharacterRecognitionInput object
+         */
         guard let cvPixelBuffer: CVPixelBuffer = self.images[currentIndex].resize(to: CGSize(width: 28, height: 28)).pixelBuffer() else { return }
         let charRecogInput = CharacterRecognitionInput(data: cvPixelBuffer)
+        // 2 -> create CharacterRecognitionOutput object using CharacterRecognition class to do predictions on input image.
         guard let prediction = try? CharacterRecognition().prediction(input: charRecogInput) else { return }
         
         print(prediction)
+        // 3 -> Check predictions using CharacterRecognitionOutput object
         self.labelPrediction.text = "Predicted Classificatoin value: \(prediction.classLabel)."
         print("----")
         print(prediction.featureNames)
         print("+++++")
         print(prediction.Handwritten_Value_is)
-
+        // prints class label name
+        let feat = prediction.featureValue(for: "classLabel")
+        // Prints the probability of each class labels
+        print(prediction.featureValue(for: "Handwritten Value is"))
+        print(feat)
     }
 }
 
